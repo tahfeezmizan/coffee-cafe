@@ -1,5 +1,6 @@
 import { FaEye, FaTrash } from "react-icons/fa";
 import { IoPencil } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee }) => {
@@ -46,7 +47,9 @@ const CoffeeCard = ({ coffee }) => {
             </div>
             <div className="flex flex-col gap-5">
                 <button className="bg-slate-900 p-2 text-white rounded-md" ><FaEye /></button>
+                <Link to={`/updatecoffee/${_id}`}>
                 <button className="bg-slate-900 p-2 text-white rounded-md" ><IoPencil /></button>
+                </Link>
                 <button onClick={() => handleDelete(_id)} className="bg-slate-900 p-2 text-white rounded-md hover:bg-red-600" ><FaTrash /></button>
             </div>
 
