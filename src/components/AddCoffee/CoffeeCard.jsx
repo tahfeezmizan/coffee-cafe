@@ -1,9 +1,40 @@
 import { FaEye, FaTrash } from "react-icons/fa";
 import { IoPencil } from "react-icons/io5";
+import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee }) => {
+    const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
 
-    const { name, chef, supplier, taste, category, details, photo } = coffee;
+    const handleDelete = _id => {
+        console.log(_id);
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/addcoffee/${_id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your coffee has been deleted.",
+                                icon: "success"
+                            });
+                        }
+
+                    })
+            }
+        });
+    }
 
     return (
         <div className="flex items-center justify-around bg-[#d2b48c1c] rounded-xl py-6 pr-10">
@@ -16,7 +47,7 @@ const CoffeeCard = ({ coffee }) => {
             <div className="flex flex-col gap-5">
                 <button className="bg-slate-900 p-2 text-white rounded-md" ><FaEye /></button>
                 <button className="bg-slate-900 p-2 text-white rounded-md" ><IoPencil /></button>
-                <button className="bg-slate-900 p-2 text-white rounded-md" ><FaTrash /></button>
+                <button onClick={() => handleDelete(_id)} className="bg-slate-900 p-2 text-white rounded-md hover:bg-red-600" ><FaTrash /></button>
             </div>
 
         </div>
