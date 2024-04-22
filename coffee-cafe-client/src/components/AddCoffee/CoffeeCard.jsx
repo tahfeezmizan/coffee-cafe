@@ -3,7 +3,7 @@ import { IoPencil } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const CoffeeCard = ({ coffee }) => {
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
     const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
 
     const handleDelete = _id => {
@@ -30,6 +30,8 @@ const CoffeeCard = ({ coffee }) => {
                                 text: "Your coffee has been deleted.",
                                 icon: "success"
                             });
+                            const remening = coffees.filter(cof => cof._id !== _id);
+                            setCoffees(remening)
                         }
 
                     })
@@ -48,7 +50,7 @@ const CoffeeCard = ({ coffee }) => {
             <div className="flex flex-col gap-5">
                 <button className="bg-slate-900 p-2 text-white rounded-md" ><FaEye /></button>
                 <Link to={`/updatecoffee/${_id}`}>
-                <button className="bg-slate-900 p-2 text-white rounded-md" ><IoPencil /></button>
+                    <button className="bg-slate-900 p-2 text-white rounded-md" ><IoPencil /></button>
                 </Link>
                 <button onClick={() => handleDelete(_id)} className="bg-slate-900 p-2 text-white rounded-md hover:bg-red-600" ><FaTrash /></button>
             </div>
