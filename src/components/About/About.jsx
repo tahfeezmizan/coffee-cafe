@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div>
+        <div className="w-full md:w-9/12 mx-auto">
             <h1>hello</h1>
         </div>
     );

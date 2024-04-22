@@ -12,7 +12,7 @@ const Navbar = () => {
 
     return (
         <div className="" >
-            <div className="w-8/12 mx-auto py-3">
+            <div className="w-full md:w-9/12 mx-auto py-3">
                 <div className="flex justify-between items-center">
                     <Link to='/' className='text-xl'>Coffee Cafe</Link>
                     <div className="flex list-none gap-5">

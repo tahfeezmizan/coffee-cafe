@@ -9,12 +9,18 @@ import Root from './Root.jsx';
 import About from './components/About/About.jsx';
 import AddCoffee from './components/AddCoffee/AddCoffee.jsx';
 import UpdateCoffee from './components/UpdateCoffee/UpdateCoffee.jsx';
+import Home from './components/Home/Home.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
     children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+        loader: () =>fetch('http://localhost:5000/addcoffee')
+      },
       {
         path: '/about',
         element: <About></About>
