@@ -20,10 +20,19 @@ const client = new MongoClient(uri, {
     }
 });
 
+client
+    .connect()
+    .then(() => {
+        console.log("MongoDB Connected");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        // await client.connect();
         const coffeeCollaction = client.db("coffeeDB").collection("coffee");
         const userCollaction = client.db('coffeeDB').collection('user');
 
@@ -91,15 +100,29 @@ async function run() {
             res.send(result)
         })
 
-        app.delete('/users/:id', async(req, res) => {
+        app.patch('/users', async (req, res) => {
+            const user = req.body;
+            const filter = { email: user.email }
+            // const options = { upsert: true };
+            const updateDB = {
+                $set: {
+                    lastLoginAT: user.lastLoginAT
+                }
+            }
+            const result = await userCollaction.updateOne(filter, updateDB)
+            res.send(result)
+        })
+
+        app.delete('/users/:id', async (req, res) => {
             const id = req.params.id;
-            const query = {_id: new ObjectId(id)}
+            const query = { _id: new ObjectId(id) }
             const result = await userCollaction.deleteOne(query);
+            res.send(result)
         })
 
 
         // Send a ping to confirm a successful connection
-        await client.db("admin").command({ ping: 1 });
+        // await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
