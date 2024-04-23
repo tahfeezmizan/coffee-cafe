@@ -25,7 +25,7 @@ const SingUp = () => {
                 const createdAT = result.user.metadata.creationTime;
                 const user = { email, password, createdAT: createdAT };
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"
@@ -37,6 +37,7 @@ const SingUp = () => {
                         if (data.insertedId) {
                             alert('User Created Sucessfully on Mongobd Database');
                         }
+                        form.reset();
                         console.log(data)
                     })
             })

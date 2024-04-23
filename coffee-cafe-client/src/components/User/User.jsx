@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const User = () => {
     const loadedUser = useLoaderData();
     const [user, setUser] = useState(loadedUser);
 
-    const handleDelete = () => {
-        
+    const handleDelete = (id) => {
+        console.log('btn click');
+        fetch(`https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/users/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your coffee has been deleted.",
+                        icon: "success"
+                    });
+                    const remaning = user.filter(user => user._id !== id);
+                    setUser(remaning)
+                }
+            })
     }
 
     return (
@@ -20,6 +37,7 @@ const User = () => {
                             <th className='border p-1'>Id</th>
                             <th className='border p-1'>Email</th>
                             <th className='border p-1'>create time</th>
+                            <th className='border p-1'>Last Login Time</th>
                             <th className='border p-1'>Action</th>
                         </tr>
                     </thead>
@@ -31,11 +49,12 @@ const User = () => {
                                     <td className='border p-1'>1</td>
                                     <td className='border p-1'>{user.email}</td>
                                     <td className='border p-1'>{user.createdAT}</td>
+                                    <td className='border p-1'>{user.lastLoginAT}</td>
                                     <th className='border p-1'>
-                                        <button 
-                                        onClick={() => handleDelete(_id)}
-                                        className='btn'>X</button>
-                                        </th>
+                                        <button
+                                            onClick={() => handleDelete(user._id)}
+                                            className='btn'>X</button>
+                                    </th>
                                 </tr>
                             </>)
                         }

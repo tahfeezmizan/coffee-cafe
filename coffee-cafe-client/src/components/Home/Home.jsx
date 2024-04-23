@@ -16,12 +16,12 @@ const Home = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {
-                    coffees.map(coffee => <CoffeeCard 
-                        key={coffee._id} 
+                    coffees.map(coffee => <CoffeeCard
+                        key={coffee._id}
                         coffee={coffee}
                         coffees={coffees}
                         setCoffees={setCoffees}
-                        ></CoffeeCard>)
+                    ></CoffeeCard>)
                 }
             </div>
         </div>

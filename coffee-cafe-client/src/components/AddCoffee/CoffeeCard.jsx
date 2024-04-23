@@ -7,8 +7,6 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
     const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
 
     const handleDelete = _id => {
-        console.log(_id);
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -19,7 +17,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/addcoffee/${_id}`, {
+                fetch(`https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/addcoffee/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -31,7 +29,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
                                 icon: "success"
                             });
                             const remening = coffees.filter(cof => cof._id !== _id);
-                            setCoffees(remening)
+                            setCoffees(remening);
                         }
 
                     })

@@ -18,9 +18,27 @@ const SingIn = () => {
             .then(result => {
                 console.log(result);
                 navigate('/')
-                if(result.user) {
-                    alert('login sucessfully')
+                const user = {
+                    email,
+                    lastLoginAT: result.user?.metadata?.lastSignInTime
                 }
+                fetch('https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/users', {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                       console.log(data)
+                    //    alert(data)
+                        // if () {
+                        //     alert('login sucessfully')
+                        // }
+                    })
+
+
             })
             .catch(error => {
                 console.log(error.message);
