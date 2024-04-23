@@ -13,15 +13,32 @@ const SingUp = () => {
     const handleRegister = e => {
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value;
+        // const name = form.name.value;
         const email = form.email.value;
-        const photourl = form.photourl.value;
+        // const photourl = form.photourl.value;
         const password = form.password.value;
-        console.log(name, email, photourl, password);
+        console.log(email, password);
 
         createUser(email, password)
             .then(result => {
                 console.log(result)
+                const createdAT = result.user.metadata.creationTime;
+                const user = { email, password, createdAT: createdAT };
+
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            alert('User Created Sucessfully on Mongobd Database');
+                        }
+                        console.log(data)
+                    })
             })
             .catch(error => {
                 console.log(error.message)

@@ -13,6 +13,7 @@ import Home from './components/Home/Home.jsx';
 import SingUp from './components/SingUp/SingUp.jsx';
 import SingIn from './components/SingIn/SingIn.jsx';
 import AuthProvider from './components/Provider/AuthProvider.jsx';
+import User from './components/User/User.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,13 @@ const router = createBrowserRouter([
       {
         path: '/singin',
         element: <SingIn></SingIn>
+      },
+      {
+        path: '/users',
+        element: <User></User>,
+        loader: () => fetch('http://localhost:5000/users')
       }
+
     ]
   },
 ]);
