@@ -28,7 +28,7 @@ const SingUp = () => {
             })
 
     }
-    
+
     return (
         <div className='w-full md:w-9/12 mx-auto py-3'>
             <Helmet>
@@ -37,19 +37,20 @@ const SingUp = () => {
 
             <div className="w-96 mx-auto bg-white shadow-xl p-14 rounded-xl ">
                 <form onSubmit={handleRegister}>
+                    <h1 className="text-2xl py-2 text-center font-bold">Sing Up</h1>
                     <div className="pb-4">
-                        <div className="">
+                        {/* <div className="">
                             <label htmlFor="">Name</label> <br />
                             <input type="text" name="name" className="w-full my-2 border rounded-md pl-2 p-1" placeholder='Enter Your Name' id="" />
-                        </div>
+                        </div> */}
                         <div className="">
                             <label htmlFor="">Email</label> <br />
                             <input type="email" name="email" className="w-full my-2 border rounded-md pl-2 p-1" placeholder='Enter Your Email' id="" />
                         </div>
-                        <div className="">
+                        {/* <div className="">
                             <label htmlFor="">Photo Url</label> <br />
                             <input type="text" name="photourl" className="w-full my-2 border rounded-md pl-2 p-1" placeholder='Enter Your Photo URL' id="" />
-                        </div>
+                        </div> */}
                         <div className="">
                             <label htmlFor="">Password</label> <br />
                             <input type="password" name="password" className="w-full my-2 border rounded-md pl-2 p-1" placeholder='Set Your Password' id="" />
