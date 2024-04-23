@@ -70,23 +70,31 @@ async function run() {
 
         app.delete('/addcoffee/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: new ObjectId(id) }
-
+            const query = { _id: new ObjectId(id) };
             const result = await coffeeCollaction.deleteOne(query);
             res.send(result)
         });
 
 
         // user information
+
+        app.get('/users', async (req, res) => {
+            const cursor = userCollaction.find();
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+
         app.post('/users', async (req, res) => {
             const user = req.body;
             console.log(user);
-            // const newUser = {
-            //     email: user.email,
-            //     passwrod: user.passwrod,
-            // }
             const result = await userCollaction.insertOne(user);
             res.send(result)
+        })
+
+        app.delete('/users/:id', async(req, res) => {
+            const id = req.params.id;
+            const query = {_id: new ObjectId(id)}
+            const result = await userCollaction.deleteOne(query);
         })
 
 
