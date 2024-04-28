@@ -9,7 +9,7 @@ const User = () => {
 
     const handleDelete = (id) => {
         console.log('btn click');
-        fetch(`https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/users/${id}`, {
+        fetch(`https://coffee-cafe-server.vercel.app/users/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

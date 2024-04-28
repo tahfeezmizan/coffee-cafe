@@ -22,7 +22,7 @@ const SingIn = () => {
                     email,
                     lastLoginAT: result.user?.metadata?.lastSignInTime
                 }
-                fetch('https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/users', {
+                fetch('https://coffee-cafe-server.vercel.app/users', {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'

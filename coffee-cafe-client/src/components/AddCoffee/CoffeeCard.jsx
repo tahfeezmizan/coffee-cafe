@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
-    const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
+    const { _id, name, chef, photo } = coffee;
 
     const handleDelete = _id => {
+        
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -17,7 +18,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/addcoffee/${_id}`, {
+                fetch(`https://coffee-cafe-server.vercel.app/addcoffee/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

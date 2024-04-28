@@ -23,33 +23,33 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/addcoffee')
+        loader: () => fetch('https://coffee-cafe-server.vercel.app/addcoffee')
       },
       {
-        path: '/about',
+        path: 'about',
         element: <About></About>
       },
       {
-        path: '/addcoffee',
+        path: 'addcoffee',
         element: <AddCoffee></AddCoffee>
       },
       {
-        path: '/updatecoffee/:id',
+        path: 'updatecoffee/:id',
         element: <UpdateCoffee></UpdateCoffee>,
-        loader: ({ params }) => fetch(`https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/addcoffee/${params.id}`),
+        loader: ({ params }) => fetch(`https://coffee-cafe-server.vercel.app/addcoffee/${params.id}`),
       },
       {
-        path: '/singup',
+        path: 'singup',
         element: <SingUp></SingUp>
       },
       {
-        path: '/singin',
+        path: 'singin',
         element: <SingIn></SingIn>
       },
       {
-        path: '/users',
+        path: 'users',
         element: <User></User>,
-        loader: () => fetch('https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/users')
+        loader: () => fetch('https://coffee-cafe-server.vercel.app/users')
       }
 
     ]

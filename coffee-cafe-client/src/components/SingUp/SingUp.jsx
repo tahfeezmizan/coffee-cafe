@@ -25,7 +25,7 @@ const SingUp = () => {
                 const createdAT = result.user.metadata.creationTime;
                 const user = { email, password, createdAT: createdAT };
 
-                fetch('https://coffee-cafe-server-6mvyz9uz5-tahfeez-mizans-projects.vercel.app/users', {
+                fetch('https://coffee-cafe-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"
