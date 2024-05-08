@@ -1,15 +1,30 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import UseAuth from '../../UseAuth/UseAuth';
 
 const Navbar = () => {
+    const { user, logOutUser, } = UseAuth();
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/addcoffee">Add Coffee</NavLink></li>
-        <li><NavLink to="/users">Users</NavLink></li>
-        <li><NavLink to="/singin">Sing In</NavLink></li>
-        <li><NavLink to="/singup">Sing Up</NavLink></li>
+        {user ?
+            <>
+                <li><NavLink to="/addcoffee">Add Coffee</NavLink></li>
+                <li><NavLink to="/users">Users</NavLink></li>
+                <li>
+                    <button onClick={() => {
+                        logOutUser()
+                    }
+                    } >LogOut</button>
+                </li>
+            </>
+            :
+            <>
+                <li><NavLink to="/singin">Sing In</NavLink></li>
+                <li><NavLink to="/singup">Sing Up</NavLink></li>
+            </>
+        }
     </>
 
     return (
