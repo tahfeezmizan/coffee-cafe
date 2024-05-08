@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
-import { AuthContext } from '../Provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import UseAuth from '../../UseAuth/UseAuth';
 
 const SingIn = () => {
-    const { singInUser } = useContext(AuthContext);
+    const { singInUser } = UseAuth()
     const navigate = useNavigate()
 
     const handleSingIn = e => {
@@ -18,32 +18,16 @@ const SingIn = () => {
             .then(result => {
                 console.log(result);
                 navigate('/')
-                const user = {
-                    email,
-                    lastLoginAT: result.user?.metadata?.lastSignInTime
-                }
-                fetch('https://coffee-cafe-server.vercel.app/users', {
-                    method: 'PATCH',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(user)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                       console.log(data)
-                    //    alert(data)
-                        // if () {
-                        //     alert('login sucessfully')
-                        // }
-                    })
-
-
+                alert("user Login Sucessfully")
             })
             .catch(error => {
                 console.log(error.message);
             })
     }
+
+    // User
+    // lewoc@mailinator.com
+    // Pa$$w0rd!
 
     return (
         <div className='w-full md:w-9/12 mx-auto py-3'>
