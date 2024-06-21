@@ -36,6 +36,7 @@ async function run() {
         const coffeeCollaction = client.db("coffeeDB").collection("coffee");
         const userCollaction = client.db('coffeeDB').collection('user');
 
+        // get all coffees item
         app.get('/addcoffee', async (req, res) => {
             const cursor = coffeeCollaction.find();
             const result = await cursor.toArray();
