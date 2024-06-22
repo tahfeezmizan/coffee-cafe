@@ -81,6 +81,7 @@ async function run() {
             res.send(result);
         })
 
+        //Delete specific coffee items using coffee ID
         app.delete('/addcoffee/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) };
